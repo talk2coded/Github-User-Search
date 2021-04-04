@@ -2,8 +2,7 @@
 const form = document.getElementById('form');
 var result = document.getElementById('results');
 const totalCount = document.getElementById('total-count');
-var githubUser = [];
-
+var githubUsers = []
 
 form.addEventListener("submit",function(event){
     const users = document.getElementById("username").value;
@@ -22,14 +21,14 @@ form.addEventListener("submit",function(event){
 
 
 
-//  function that fetches users from the github API 
+ //function that fetches users from the github API 
 function searchUser(user){
    
   
    fetch("https://api.github.com/search/users?q="  + user +  "+in:email&per_page=100"   )
    .then(response => response.json())
    .then(data => data.items.forEach(item => { 
-    //console.log(item.followers_url)
+    //console.log(data)
     
     // create a div
     const component = document.createElement('div'); 
@@ -37,6 +36,7 @@ function searchUser(user){
      //create <a></a> to link images
     const imageLink = document .createElement('a');
     imageLink.setAttribute('href', item.html_url);
+    imageLink.setAttribute('target', '_blank')
 
       //create <img/> for the images
     const image = document.createElement('img');
@@ -48,12 +48,14 @@ function searchUser(user){
         followersUrl.innerText = `followers ${item.followers_url.length}`;
         followersUrl.classList.add('followers');
         followersUrl.setAttribute('href', item.followers_url);
+        followersUrl.setAttribute('target', '_blank');
 
         // create following url
         const followingUrl = document.createElement('a');
         followingUrl.innerText = `following ${item.following_url.length}`;
         followingUrl.classList.add('following');
-        followingUrl.setAttribute('href', item.following_url)
+        followingUrl.setAttribute('href', item.following_url);
+        followingUrl.setAttribute('target', '_blank')
 
         // create a div to hold both links
         const linkUrl = document.createElement('div');
@@ -65,16 +67,20 @@ function searchUser(user){
     component.appendChild(imageLink);
     component.appendChild(linkUrl);
     
+     githubUsers = component;
 
-     
-    githubUser = component;
-    result.append(githubUser)
+    result.append(githubUsers);
 
+    //githubUsers = result;
     
       //console.log(githubUser.length)
-     
-
    },
     totalCount.innerHTML = `<h3>Total count: ${data.items.length}</h3>`));
-  
+   
 };
+//console.log(githubUsers)
+
+// Pagination 
+
+
+

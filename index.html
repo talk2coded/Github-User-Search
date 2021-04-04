@@ -17,13 +17,13 @@
         <h1 style="text-align: center;">Github Search</h1>
         <div class="form-group">
             <input type="text" id="username" placeholder="User" class="form-control ml-4"><br>
-            <button class="btn btn-primary" id="btn">Search</button>
+            <span class="input-group"><button class="btn btn-primary" id="btn">Search</button></span>
         
         </div>
         <span id="total-count"></span>
     </form>
     <br>
-    <div id="results" class="results">
+    <div id="" class="results">
            <!-- <a href="#" class="image-link"><img src="#" class="img-thumbnail ms-4 mb-4 w-25 h-25" id="user-image"></a>
            <div style="margin-top: -20px; margin-left: 20px;"><a href="#" id="followers">followers</a></div>
            <div style=" margin-left: 20px;"><a href="#" id="following">following</a></div>
@@ -39,6 +39,11 @@
           <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
       </nav>
+
+      <div id="results"></div>
+      <a href="javascript:prevPage()" id="btn_prev">Prev</a>
+      <a href="javascript:nextPage()" id="btn_next">Next</a>
+      page: <span id="page"></span>
 </div>
    
 

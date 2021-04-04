@@ -1,12 +1,7 @@
 
 const form = document.getElementById('form');
 var result = document.getElementById('results');
-const button =  document.getElementById('btn'); 
 const totalCount = document.getElementById('total-count');
-const image = document.getElementById('image');
-const imageLink = document.getElementById('image-link');
-const starIcon = document.getElementById('star');
-const starLink = document.getElementById('star-link');
 var githubUser = [];
 
 
@@ -34,9 +29,11 @@ function searchUser(user){
    fetch("https://api.github.com/search/users?q="  + user +  "+in:email&per_page=100"   )
    .then(response => response.json())
    .then(data => data.items.forEach(item => { 
-    console.log(data.items.)
+    //console.log(item.followers_url)
     
-
+    // create a div
+    const component = document.createElement('div'); 
+    component.classList.add('component');
      //create <a></a> to link images
     const imageLink = document .createElement('a');
     imageLink.setAttribute('href', item.html_url);
@@ -46,13 +43,34 @@ function searchUser(user){
     image.setAttribute('src', item.avatar_url);
     image.classList.add('img-thumbnail', 'ms-4', 'mb-4', 'w-25', 'h-25');
 
+        // create followers url
+        const followersUrl = document.createElement('a');
+        followersUrl.innerText = `followers ${item.followers_url.length}`;
+        followersUrl.classList.add('followers');
+        followersUrl.setAttribute('href', item.followers_url);
+
+        // create following url
+        const followingUrl = document.createElement('a');
+        followingUrl.innerText = `following ${item.following_url.length}`;
+        followingUrl.classList.add('following');
+        followingUrl.setAttribute('href', item.following_url)
+
+        // create a div to hold both links
+        const linkUrl = document.createElement('div');
+        linkUrl.classList.add('follow-links');
+
     imageLink.appendChild(image);
+    linkUrl.appendChild(followingUrl);
+    linkUrl.appendChild(followersUrl);
+    component.appendChild(imageLink);
+    component.appendChild(linkUrl);
     
 
      
-     result.append(githubUser)
+    githubUser = component;
+    result.append(githubUser)
 
-     githubUser = imageLink;
+    
       //console.log(githubUser.length)
      
 

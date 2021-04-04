@@ -1,0 +1,16 @@
+.followers{
+    display: inline;
+    margin-left: 20px;
+}
+
+.following{
+    display: inline;
+    margin-left: 20px;
+}
+
+.follow-links{
+    margin-bottom: 15px;
+}
+.component{
+    
+}
